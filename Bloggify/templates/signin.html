@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Log-in page</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      position: fixed;
+    }
+    
+    .container .Rightside .model {
+      width: 689.964px;
+      height: 792px;
+      flex-shrink: 0;
+      position: relative; 
+    }
+    
+    .container .Rightside .left-arrow {
+      width: 55.765px;
+      height: 55.765px;
+      flex-shrink: 0;
+      top: 42px; 
+      left: 43px; 
+      position: absolute;
+      z-index: 1;
+    }
+    
+    
+    .container .log-in {
+      border-radius: 35px 0 0 35px;
+      background: #FFF;
+      box-shadow: -6px 4px 7px 0 rgba(48, 48, 48, 0.45);
+      width: 148px;
+      height: 60px;
+      flex-shrink: 0;
+      color: #186F8E;
+      font-family: Poppins;
+      font-size: 24px;
+      font-weight: 500;
+      position: absolute;
+      top: 573px;
+      left: 503px;
+      padding: 15px 0 0 40px;
+      text-decoration: none;
+    }
+    
+    .container .sign-in {
+      border-radius: 35px 0 0 35px;
+      background: none;
+      width: 148px;
+      height: 60px;
+      flex-shrink: 0;
+      color: #F8F8F8;
+      font-family: Poppins;
+      font-size: 24px;
+      font-weight: 500;
+      position: absolute;
+      top: 665px;
+      left: 541px;
+      text-decoration: none;
+    }
+    
+    .container .formside h2 {
+      width: 498px;
+      height: 89px;
+      top: 74px;
+      left: 777px;
+      color: #696969;
+      font-family: Poppins;
+      font-size: 50px;
+      font-weight: 500;
+      position: absolute;
+    }
+    
+    .container .form-container .input-name,
+    .container .form-container .password {
+      width: 564px;
+      height: 58px;
+      flex-shrink: 0;
+      border-radius: 11px 11px;
+      border-bottom: 1px solid #696969;
+      background: #FEFEFE;
+      left: 777px;
+      position: absolute;
+      top: 218px;
+    }
+    
+    .container .form-container .enter-name,
+    .container .form-container .enter-password {
+      width: 564px;
+      height: 23px;
+      flex-shrink: 0;
+      color: #696969;
+      font-family: Poppins;
+      font-size: 14px;
+      font-weight: 300;
+      border: none;
+      padding: 21px 30px 14px 61px;
+      position: absolute;
+      background-repeat: no-repeat;
+      background-position: 10px center;
+      background-size: 30px 30px; 
+    }
+    
+    .container .form-container .enter-name {
+      background-image: url('/media/User.png');
+    }
+    
+    .container .form-container .enter-password {
+      background-image: url('/media/Password.png');
+    }
+    
+    .container .form-container .user,
+    .container .form-container img {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      position: absolute;
+      top: 14px;
+      left: 9px;
+    }
+    
+    .container .form-container .password {
+      top: 298px;
+    }
+    
+    .container .form-container .forgot-password,
+    .container .form-container .Create-account {
+      width: 185px;
+      height: 32px;
+      flex-shrink: 0;
+      color: #4A8DA6;
+      font-family: Poppins;
+      font-size: 18px;
+      font-weight: 400;
+      position: absolute;
+      top: 384px;
+      left: 777px;
+      text-decoration: none;
+    }
+    
+    .container .form-container .Create-account {
+      width: 149px;
+      left: 1192px;
+    }
+    
+    button[type="submit"] {
+        width: 174px;
+        height: 46px;
+        flex-shrink: 0;
+        background-color: #FF8000; 
+        color: #FFFFFF; 
+        border: none; 
+        border-radius: 5px; 
+        font-family: Poppins;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer; 
+        position: absolute;
+        top: 449px;
+        left: 779px;
+    }
+    
+    
+    button[type="submit"]:hover {
+        background-color: #FFA500;
+    }
+    
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <div class="Rightside">
+        <a href="/"><img src="/media/left-arrow.png" alt="" class="left-arrow"></a>
+      <img src="/media/Login_DOg.jpg" alt="" class="model">
+    
+    </div>
+    <a class="log-in" href="/signin">Log-in</a>
+    <a class="sign-in" href="/signup">Sign-in</a>
+    <div class="formside">
+      <h2>Welcome Back !!</h2>
+    </div>
+    <div class="form-container">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-name">
+          <input type="text" placeholder="Enter your credential" class="enter-name" name = "username">
+        </div>
+        <div class="password">
+          <input type="password" placeholder="Enter your password" class="enter-password" name = "password">
+        </div>
+
+        <button type = "submit" >Log-in</button>
+      </form>
+      <a class="forgot-password" href="">Forgot password?</a>
+      <a class="Create-account" href="/signup">Create account</a>
+    </div>
+  </div>
+  <script src="" async defer></script>
+</body>
+</html>

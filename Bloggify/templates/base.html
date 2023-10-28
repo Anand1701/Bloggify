@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Default Title{% endblock %}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 1495px;
+            flex-shrink: 0;
+            background: #EBFFED;
+        }
+        .navbar {
+            width: 100%;
+            margin: 0;
+            padding: 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #323232;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            height: 95px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 24px;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            display: flex;
+        }
+        .navbar li {
+            margin-left: 10px;
+        }
+        .navbar a {
+            color: #F5F5F5;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 0px 20px;
+        }
+        .navbar a:hover {
+            color:  #FFD700;
+        }
+        .navbar a::after{
+            color: #FFD700;
+        }
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+        .signin, .signup {
+            margin-left: 20px;
+            font-weight: 400;
+        }
+        footer{
+            width: 100%;
+height: 145px;
+background: #464646;
+            position: absolute;
+            bottom: 0%;
+            z-index: 0;
+        }
+    
+        .navbar ul li.active a {
+            color: rgb(255, 200, 0);
+        }
+        .profile img{
+            width: 31px;
+            height: 37px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            margin-top: 20px;
+            margin-left: 83px;
+            position: relative;
+        }
+        
+    </style>
+</head>
+<body>  
+    <nav>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/home">Logo</a>
+                </div>
+                <ul>
+                    <li {% if request.path == '/home' %}class="active"{% endif %}>
+                        <a href="/home">For You</a>
+                    </li>
+                    <li {% if request.path == '/write_blog' %}class="active"{% endif %}>
+                        <a href="/write_blog">Start Writing</a>
+                    </li>
+                    <li {% if request.path == '/new' %}class="active"{% endif %}>
+                        <a href="/new">What's New?</a>
+                    </li>
+                </ul>
+                
+                <div class="user-info">
+                    {% if user.is_authenticated %}
+                        <a href="/userprofile" > <img src="{{ profile.profile_pic.url }}" alt="{{user.username}}"> </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+
+</body>
+</html>

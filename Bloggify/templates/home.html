@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% block title %}Home Page {% endblock %}
+
+{% block content %}
+<style>
+    .fyp {
+        width: 100%;
+        background: #F7FDFF;
+        padding: 20px;
+        position: relative;
+        top: 50px;
+        
+    }
+
+    .fyp .foryou {
+        width: 347px;
+        height: 86px;
+        flex-shrink: 0;
+        color: #636363;
+        font-family: Poppins;
+        font-size: 38px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        position: relative;
+        top: 32px;
+        left: 91px;
+    }
+
+    .carousel-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .carousel-card {
+        width: 1167px;
+        height: 361px; 
+        border-radius: 17px;
+        padding: 20px;
+        margin: 10px 0;
+        border-radius: 17px;
+        background: #ffffff;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        display: inline-block; 
+    }
+
+    .carousel-card img {
+        width: 365px;
+        height: 330px;
+        border-radius: 18px;
+        background: #D9D9D9;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        margin-right: 20px;
+        float: right;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .blog-details {
+        flex-grow: 1; 
+    }
+
+    .blog-title {
+        width: 654px;
+height: 107px;
+        color: #464646;
+        font-family: Poppins;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: 1.6px;
+        margin-top: 37px;
+        margin-left: 56px; 
+    }
+
+    .blog-description {
+        width: 654px;
+height: 107px;
+        color: #696969;
+        font-family: Poppins;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: 0.96px;
+        margin-top: 13px;
+        margin-left: 56px;
+    }
+    .blog-author{
+        width: 289px;
+        height: 42px;
+flex-shrink: 0;
+color: #87CEEB;
+font-family: Poppins;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: 0.96px;
+margin-top: 32px;
+margin-left: 56px;
+margin-bottom: 25px;
+
+    }
+.blog-date{
+    width: 254px;
+    color: #C0C0C0;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: 0.96px;
+margin-left: 10px;
+}
+
+/* Style for the like button */
+#like-button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style for the liked button */
+#like-button.liked {
+    background-color: #dc3545; /* Change the color when liked */
+}
+
+/* Style for the like count */
+#like-count {
+    margin-left: 10px;
+    color: #888;
+    font-weight: bold;
+}
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".like-button").click(function () {
+            const blogId = $(this).data("blog-id");
+            const likeButton = $(this);
+
+            $.ajax({
+                type: "POST",
+                url: `/toggle-like/${blogId}/`,  // URL for toggle_like view
+                data: {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                },
+                success: function (response) {
+                    if (response.liked) {
+                        likeButton.addClass("liked").text("Unlike");
+                    } else {
+                        likeButton.removeClass("liked").text("Like");
+                    }
+                    likeButton.siblings(".like-count").text(response.like_count);
+                },
+            });
+        });
+    });
+</script>
+<div class="fyp">
+    <h1 class="foryou">For You Page</h1>
+    <div class="carousel-container" >
+        {% for blog in object_list %}
+        <div class="carousel-card">
+            <a href="{% url 'blog-detail' blog.pk %}">
+                {% if blog.image %}
+                <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                {% endif %}
+                <div class="blog-details">
+                    <h2 class="blog-title">{{ blog.title }}</h2>
+                    <p class="blog-description">{{ blog.description }}</p>
+                    <span class="blog-author">{{ blog.author }}</span>
+                    <span class = "blog-date"> {{ blog.created_at }}</span>
+                </div>
+            </a>
+            <div>
+                <button class="like-button" data-blog-id="{{ blog.id }}">
+                    {% if liked %}Unlike{% else %}Like{% endif %}
+                </button>
+                <span class="like-count">{{ like_count }}</span> likes
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

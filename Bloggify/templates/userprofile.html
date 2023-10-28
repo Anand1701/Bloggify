@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }}</title>
+    <style>
+        body{
+            width: 100%;
+            height: auto;
+            flex-shrink: 0;
+            margin: 0px;
+            padding: 0px;
+            background: #FAFFFE;
+        }
+        .containers {
+            width: 100%;
+            height: auto;
+            flex-shrink: 0;
+            display: flex; /* Added flex display to create columns */
+            align-items: flex-start; /* Align items to the top */
+        }
+        .cover {
+            width: 100%;
+            height: 216px;
+            flex-shrink: 0;
+            position: fixed;
+            overflow: hidden;
+            z-index: 9999;
+        }
+        .cover img {
+            width: 100%;
+            height: auto;
+            flex-shrink: 0;
+        }
+        .cover a img{
+            width: 54.235px;
+            height: 54.235px;
+            flex-shrink: 0;
+            top: 35px;
+            left: 101px;
+            position: absolute;
+        }
+        .logout{
+            width: 130px;
+            height: 30px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            color: #FFF;
+            text-align: center;
+            border: 0px;
+            margin-top: 12px;
+            margin-left: 12px;
+        }
+
+        .logout a{
+            width: 112px;
+            height: 17px;
+            flex-shrink: 0;
+            color: #FFF;
+            text-align: center;
+            font-family: Poppins;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+            padding: 8px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .profilecard{
+            width: 337px;
+            height: 596px;
+            flex-shrink: 0;
+            border-radius: 36px;
+            background: #fdfdfd;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 120px;
+            left: 110px;
+            z-index: 9999;
+            overflow: hidden;
+        
+        }
+        .upperarea{
+            justify-content: space-between;
+        }
+        .user_details {
+            width: 307px;
+            height: 110px;
+            flex-shrink: 0;
+            margin-top: 0px;
+            margin-left: 12px;
+            position: relative;
+            border-radius: 10px;
+            background: #FFF;
+            padding: 2px;
+            align-self: center;
+        }
+        
+        .profilepic img {
+            width: 171px;
+            height: 177px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            margin-top: 20px;
+            margin-left: 83px;
+            position: relative;
+        }
+        
+        .username h1 {
+            color: #696969;
+            text-align: center;
+            font-family: Poppins;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin-top: 10px;
+            margin-left: 6px;
+            margin-bottom: 0px;
+            width: 288.826px;
+            height: auto;
+            position: relative;
+            padding: 0PX;
+        }
+        
+        .userid h1{
+            width: 289px;
+            height: auto;
+            flex-shrink: 0;
+            color: #696969;
+            text-align: center;
+            font-family: Poppins;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            position: relative;
+            margin-top: 0px;
+            margin-left: 6px;
+            margin-bottom: 0px; 
+            padding: 0px;
+        }
+        
+        .bio p{
+            width: 296px;
+            height: 25px;
+            flex-shrink: 0;
+            color: #949494;
+            text-align: center;
+            font-family: Poppins;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            padding: 0px;
+        }
+        
+        .vertical-line {
+            width: 213px;
+            height: 4px;
+            background-color: #696969;
+            align-items: center;
+            margin-left: 61px;
+            margin-top: 12px;
+            border-radius: 8px;
+        }
+        
+        /* Container for user information */
+        .userinfo {
+            width: 307px;
+            height: 132px;
+            flex-shrink: 0;
+            margin-top: 12px;
+            margin-left: 12px;
+            margin-right: 25px;
+            font-family: Poppins;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+        
+        /* Unordered list styles */
+        .userinfo ul {
+            list-style-type: none;
+            padding: 2px;
+            margin-left: 20px;
+        }
+        
+        /* List item styles */
+        .userinfo li {
+            display: flex;
+            margin-bottom: 10px;
+            font-family: Poppins;
+        }
+        
+        /* "info" label styles */
+        .userinfo .info {
+            font-weight: bold;
+            color: #323232;
+            font-family: Poppins;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 600;
+            width: 123px;
+            height: 0px;
+            flex-shrink: 0;
+        }
+        
+        /* "detail" text styles */
+        .userinfo .detail {
+            color: #666;
+            font-weight: 300;
+        }
+
+        .bottombuttons{
+            width: 307px;
+            height: 54px;
+            flex-shrink: 0;
+            position: relative;
+            margin-top: 35px;
+            margin-left: 15px;
+            align-items: center;
+        }
+        
+        .bottombuttons button{
+            width: 130px;
+            height: 30px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            color: #FFF;
+            text-align: center;
+            border: 0px;
+            margin-top: 12px;
+            margin-left: 12px;
+        }
+
+        .bottombuttons a{
+            width: 112px;
+            height: 17px;
+            flex-shrink: 0;
+            color: #FFF;
+            text-align: center;
+            font-family: Poppins;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+            padding: 8px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .bottombuttons .MakePost {
+            background: #2B9DB5;
+        }
+        .bottombuttons .EditProfile{
+            background: #FF8000;
+        }
+
+        .rightside{
+            width: 100%;
+            height: auto;
+            flex-shrink: 0;
+            margin-top: 216px;
+            position: relative;
+        }
+        .header{
+            width: 100%;
+            height: 60px;
+            z-index: 5000;
+            background: #EEEBFF;
+            position: fixed;
+            overflow: hidden;
+        }
+        .header p{
+            width: 227px;
+            height: 28px;
+            flex-shrink: 0;
+            color: #696969;
+            font-family: Roboto;
+            font-size: 25px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            text-decoration: none;
+            margin-left: 535px;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .carousel-container{
+            width: 1005px;
+            height: auto;
+            flex-shrink: 0;
+            left: 475px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 18px;
+        }
+        .carousel-container a{
+            text-decoration: none;
+        }
+        .carousel-card {
+            width: 245px;
+            height: 200px;
+            padding: 10px;
+            margin: 8px 30px;
+            display: inline-block;
+        }
+        .carousel-card img{
+            width: 220px;
+            height: 145.978px;
+            flex-shrink: 0;
+            border-radius: 18px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+            margin-left: 20px;
+            margin-top: 41px;
+            margin-bottom: 0px;
+            position: relative;
+        }
+        .blog-details {
+            width: 220px;
+            height: 55px;
+            flex-shrink: 0;
+            position: relative;
+            margin-left: 20px;
+            margin-top: 0px;
+            overflow: hidden;
+        }
+        .blog-title{
+            height: 10px;
+            flex-shrink: 0;
+            color: #696969;
+            font-family: Roboto;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+        .carousel-card span{
+            height: 15.245px;
+            flex-shrink: 0;
+            color: #C0C0C0;
+            font-family: Roboto;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="containers">
+        <div class="cover">
+            <a href="/home"><img src="/media/left-arrow.png" alt=""></a>
+            <div class="logout">
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+
+            <img src="{{ profile.cover.url }}" alt="">
+        </div>
+    
+        <div class="profilecard">
+            <div class="upperarea">
+                <div class="profilepic">
+                    <img src="{{ profile.profile_pic.url }}" alt="">
+                </div>
+                <div class="user_details">
+                    <div class="username">
+                        <h1>{{profile.first_name}} {{profile.last_name}}</h1>
+                    </div>
+                    <div class="userid">    
+                        <h1>@{{user.username}}</h1>
+                    </div>
+                    <div class="bio">
+                        <p>Shining since birth</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="vertical-line"></div>
+            <div class="userinfo">
+                <ul>
+                    <li>
+                        <span class="info">E-mail:</span>
+                        <span class="detail">{{user.email}}</span>
+                    </li>
+                    <li>
+                        <span class="info">Date of Birth:</span>
+                        <span class="detail">{{profile.dob}}</span>
+                    </li>
+                    <li>
+                        <span class="info">Country:</span>
+                        <span class="detail">India</span>
+                    </li>
+                    <li>
+                        <span class="info">Blogs created:</span>
+                        <span class="detail">546</span>
+                    </li>
+                    <li>
+                        <span class="info">Gender:</span>
+                        <span class="detail">{{profile.gender}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottombuttons">
+                <button type="submit" class="EditProfile"><a href="/editprofile"> Edit Profile
+                </a></button>
+                <button class="MakePost">  <a href="/write_blog">Post</a></button>
+            </div>
+        </div>
+        <div class="rightside">
+            <div class="header">
+                <p class="blogs">Blogs</p>
+            </div>
+            <!-- Show user's blogs -->
+            {% if user == author %}
+            <div class="carousel-container" >
+                {% for blog in object_list %}
+                <div class="carousel-card">
+                    <a href="{% url 'blog-detail' blog.pk %}">
+                        {% if blog.image %}
+                        <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                        {% endif %}
+                        <div class="blog-details">
+                            <h2 class="blog-title">{{ blog.title }}</h2>
+                            <span class="blog-date">{{ blog.created_at }}</span>
+                        </div>
+                    </a>                     
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

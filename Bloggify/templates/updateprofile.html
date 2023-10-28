@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Profile</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Your Profile</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form">
+                <label for="id_first_name">First Name:</label>
+                {{ form.first_name }}
+            </div>
+       
+            <div class="form">
+                <label for="id_last_name">Last Name:</label>
+                {{ form.last_name }}
+            </div>
+            <div class="form">
+                <label for="id_email">email:</label>
+                {{ form.email }}
+            </div>
+           
+            <div class="form">
+                <label for="id_gender">Gender:</label>
+                {{ form.gender }}
+            </div>
+            <div class="form">
+                <input type="date" placeholder="Date of Birth:" name="dob">
+            </div>
+
+            <div class="image">
+                <label for="id_profile_pic">Upload your profile pic:</label>
+                {{ form.profile_pic }}
+            </div>
+
+            <div class="image">
+                <label for="id_cover">Upload your cover pic:</label>
+                {{ form.cover }}
+            </div>
+            
+            <button type="submit">Create Profile</button>
+        </form>
+    </div>
+</body>
+</html>
